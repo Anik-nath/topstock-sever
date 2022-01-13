@@ -24,6 +24,13 @@ async function run() {
     const database = client.db("topstock");
     const productCollection = database.collection("shop");
 
+    //load all data 
+    app.get('/shop', async(req,res)=>{
+        const cursor = productCollection.find({});
+        const allProducts = await cursor.toArray();
+        res.send(allProducts);
+    })
+
 
   } finally {
     // await client.close();
